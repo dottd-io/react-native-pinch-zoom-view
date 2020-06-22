@@ -10,13 +10,15 @@ export default class PinchZoomView extends Component {
     ...viewPropTypes,
     scalable: PropTypes.bool,
     minScale: PropTypes.number,
-    maxScale: PropTypes.number
+    maxScale: PropTypes.number,
+    onScaleChange: PropTypes.func
   };
 
   static defaultProps = {
     scalable: true,
     minScale: 0.5,
-    maxScale: 2
+    maxScale: 2,
+    onScaleChange: () => { }
   };
 
   constructor(props) {
@@ -110,6 +112,8 @@ export default class PinchZoomView extends Component {
   };
 
   render() {
+    this.props.onScaleChange(this.state.scale);
+    
     return (
       <View
         {...this.gestureHandlers.panHandlers}
