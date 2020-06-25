@@ -17,8 +17,7 @@ export default class PinchZoomView extends Component {
   static defaultProps = {
     scalable: true,
     minScale: 0.5,
-    maxScale: 2,
-    onScaleChange: () => { }
+    maxScale: 2
   };
 
   constructor(props) {
@@ -35,7 +34,7 @@ export default class PinchZoomView extends Component {
     this.distant = 150;
   }
 
-  componentDidMount() {
+  UNSAFE_componentWillMount() {
     this.gestureHandlers = PanResponder.create({
       onStartShouldSetPanResponder: this._handleStartShouldSetPanResponder,
       onMoveShouldSetPanResponder: this._handleMoveShouldSetPanResponder,
@@ -113,7 +112,7 @@ export default class PinchZoomView extends Component {
 
   render() {
     this.props.onScaleChange(this.state.scale);
-    
+
     return (
       <View
         {...this.gestureHandlers.panHandlers}
